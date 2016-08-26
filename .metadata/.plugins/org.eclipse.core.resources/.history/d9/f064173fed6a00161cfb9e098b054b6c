@@ -1,0 +1,76 @@
+package com.forrestzoo;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+public class DOA {
+
+	static final String DB_URL = "jdbc:mysql://localhost:3306/?user=root$autoReconnect=true&useSSL=false";
+	static final String USER = "root";
+	static final String PASSWORD = "root";
+	
+	
+	
+	static Connection CONN = null;
+	static Statement STMT = null;
+	static PreparedStatement PREP_STMT = null;
+	static ResultSet RES_SET = null;
+	
+	
+public static void connToDB(){
+		
+		try{
+			System.out.println("Trying to connect to the Database...");
+		CONN = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+		System.out.println("Connected to the Database");
+		}catch(SQLException e){
+			System.out.println("Failed to connect to the Database");
+			e.printStackTrace();
+		}
+		
+	}
+
+
+public static void readFromDB(){
+	
+	
+	connToDB();
+	ArrayList<Animals>ourAnimals = new ArrayList<>();
+	
+	try{
+	STMT = CONN.createStatement();
+	RES_SET = STMT.executeQuery("SELECT * FROM students.students");
+	
+	while(RES_SET.next()){
+		Animals animalsInDB = new Animals();
+		
+		animalsInDB.setAnimalID("animalID");
+		animalsInDB.setLastName(RES_SET.getString("last_name"));
+		animalsInDB.setFirstName(RES_SET.getString("first_name"));
+		animalsInDB.setgpa(RES_SET.getDouble("student_gpa"));
+		
+		ourAnimals.add(animalsInDB);
+		
+		
+	}
+	
+	for (Animals animals : ourAnimals) {
+		System.out.println(animals.toString());
+	}
+	
+	
+	}catch(SQLException e){
+		e.printStackTrace();
+		
+	}
+}
+	
+	
+}
+
+

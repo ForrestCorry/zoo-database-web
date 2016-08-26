@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="ISO-8859-1">
+	<title>Zoo</title>
+	<link rel="stylesheet" type="text/css" href="zoo.css">
+	</head>
+	<body>
+		<head>
+			<h1 align="middle">Welcome To Forrest's Zoo</h1>
+		</head>
+	
+		<table style="width:30%">
+  			<tr>
+    			<th>ID</th>
+    			<th>Species</th> 
+    			<th>Habitat</th>
+    			<th>Diet</th>
+    			<th>Name</th>
+    			<th>Weight</th>
+  			</tr>
+  			<tr>
+    			<td>Test</td>
+    			<td>Test</td> 
+    			<td>Test</td>
+    			<td>Test</td>
+    			<td>Test</td>
+    			<td>Test</td>
+  			</tr>
+  			<tr>
+    			<td>Test</td>
+    			<td>Test</td> 
+    			<td>Test</td>
+    			<td>Test</td>
+    			<td>Test</td>
+    			<td>Test</td>
+  			</tr>
+  			<tr>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  			</tr>
+  			<tr>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  			</tr>
+  			<tr>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  			<tr>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  			</tr>
+		</table>
+
+
+
+
+	</body>
+</html>

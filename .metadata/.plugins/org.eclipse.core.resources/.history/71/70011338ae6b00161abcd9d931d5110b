@@ -1,0 +1,127 @@
+package com.forrestzoo;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class DOA {
+
+	static final String DB_URL = "jdbc:mysql://localhost:3306/?user=root$autoReconnect=true&useSSL=false";
+	static final String USER = "root";
+	static final String PASSWORD = "root";
+
+	static Connection CONN = null;
+	static Statement STMT = null;
+	static PreparedStatement PREP_STMT = null;
+	static ResultSet RES_SET = null;
+
+	static Scanner sc = new Scanner(System.in);
+
+	public static void connToDB() {
+
+		try {
+			System.out.println("Trying to connect to the Database...");
+			CONN = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+			System.out.println("Connected to the Database");
+		} catch (SQLException e) {
+			System.out.println("Failed to connect to the Database");
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void readFromDB() {
+
+		connToDB();
+		ArrayList<Animals> ourAnimals = new ArrayList<>();
+
+		try {
+			STMT = CONN.createStatement();
+			RES_SET = STMT.executeQuery("SELECT * FROM students.animals_at_zoo;");
+
+			while (RES_SET.next()) {
+				Animals animalsInDB = new Animals();
+
+				animalsInDB.setAnimalID(RES_SET.getString("animal_id"));
+				animalsInDB.setSpecies(RES_SET.getString("species"));
+				animalsInDB.setTypeOfCage(RES_SET.getString("type_of_cage"));
+				animalsInDB.setFood(RES_SET.getString("food"));
+				animalsInDB.setName(RES_SET.getString("name"));
+				animalsInDB.setWeight(RES_SET.getDouble("weight"));
+
+				ourAnimals.add(animalsInDB);
+
+			}
+
+			for (Animals animal : ourAnimals) {
+				System.out.println(animal.toString());
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+	}
+	
+	public static void writeToDB(){
+		Animals animalToAdd = new Animals();
+		
+		animalToAdd = aboutTheAnimal();
+		
+		connToDB();
+		
+		try{
+			PREP_STMT =CONN.prepareStatement(insertToDB);
+			
+			PREP_STMT.setString(1, animalToAdd.getSpecies());
+			PREP_STMT.setString(2, animalToAdd.getTypeOfCage());
+			PREP_STMT.setString(3, animalToAdd.getFood());
+			PREP_STMT.setString(4, animalToAdd.getName());
+			PREP_STMT.setDouble(5, animalToAdd.getWeight());
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static String insertToDB = "INSERT INTO 'students.animals_at_zoo'"
+			+ "(species, type_of_cage, food, name, weight)"
+			+ " VALUES "
+			+ "(?, ?, ?, ?, ?)";
+	
+	private static Animals aboutTheAnimal(){
+		
+		Animals animalToAdd = new Animals();
+		
+		System.out.println("What is the Species of the Animal?");
+		animalToAdd.setSpecies(sc.nextLine());
+		
+		System.out.println("What type of Habitat does the " + animalToAdd.getSpecies() + " live in?");
+		animalToAdd.setTypeOfCage(sc.nextLine());
+		
+		System.out.println("What food does your "+ animalToAdd.getSpecies() + " eat");
+		animalToAdd.setFood(sc.nextLine());
+		
+		System.out.println("What is your " + animalToAdd.getSpecies() + " name?");
+		animalToAdd.setName(sc.nextLine());
+		
+		System.out.println("What does your " + animalToAdd.getSpecies() + " weigh?");
+		animalToAdd.setWeight(Double.parseDouble(sc.nextLine()));
+		
+		return animalToAdd;
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+
+}

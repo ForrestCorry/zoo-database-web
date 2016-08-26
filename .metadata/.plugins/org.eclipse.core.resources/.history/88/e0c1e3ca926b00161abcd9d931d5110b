@@ -1,0 +1,12 @@
+package com.forrestzoo;
+
+public class ForrestZoo {
+
+	public static void main(String[] args) {
+
+		DOA.readFromDB();
+		
+		
+	}
+
+}

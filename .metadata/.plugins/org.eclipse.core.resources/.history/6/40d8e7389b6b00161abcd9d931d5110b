@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="ISO-8859-1">
+	<title>Zoo</title>
+	<link rel="stylesheet" type="text/css" href="zoo.css">
+	</head>
+	<body>
+		<head>
+			<h1 align="middle">Welcome To Forrest's Zoo</h1>
+		</head>
+	   <div class="zootable">
+		<table>
+		   <caption>Animals In The Zoo</caption>
+  			<tr>
+    			<th>ID</th>
+    			<th>Species</th> 
+    			<th>Habitat</th>
+    			<th>Diet</th>
+    			<th>Name</th>
+    			<th>Weight</th>
+  			</tr>
+  			<tr>
+    			<td>Test</td>
+    			<td>Test</td> 
+    			<td>Test</td>
+    			<td>Test</td>
+    			<td>Test</td>
+    			<td>Test</td>
+  			</tr>
+  			<tr>
+    			<td>Test</td>
+    			<td>Test</td> 
+    			<td>Test</td>
+    			<td>Test</td>
+    			<td>Test</td>
+    			<td>Test</td>
+  			</tr>
+  			<tr>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  			</tr>
+  			<tr>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  			</tr>
+  			<tr>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  			<tr>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  				<td>Test</td>
+  			</tr>
+		</table>
+       </div>
+      <div class="buttons">
+	   <button type="button" form="add">Add</button>
+	   <button type="button" form="delete">Delete</button>
+	   <button type="button" form="update">Update</button>
+      </div>
+	  <div>
+	  	<form id="add">
+  			 Species:<br>
+  			 <input type="text" name="species"><br>
+ 			 Habitat:<br>
+ 			 <input type="text" name="habitat"><br>
+ 			 Food:<br>
+ 			 <input type="text" name="food"><br>
+ 			 Name:<br>
+ 			 <input type="text" name="name"><br>
+ 			 Weight:<br>
+ 			 <input type="text" name="weight">
+		</form>
+	  </div>
+	</body>
+</html>
