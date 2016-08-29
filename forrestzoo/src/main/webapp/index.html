@@ -4,14 +4,16 @@
 	<meta charset="ISO-8859-1">
 	<title>Zoo</title>
 	<link rel="stylesheet" type="text/css" href="zoo.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	</head>
 	<body>
 		<head>
-			<h1 align="middle">Welcome To Forrest's Zoo</h1>
+			<h1 align="center">Welcome To Forrest's Zoo</h1>
 		</head>
 	   <div class="zootable">
 		<table>
-		   <caption>Animals In The Zoo</caption>
+		   <caption style="color: black" align="center">Animals In The Zoo</caption>
   			<tr>
     			<th>ID</th>
     			<th>Species</th> 
@@ -69,25 +71,13 @@
   			</tr>
 		</table>
        </div>
+       
+       <h3 align="center">Please select what you would like to do</h3>
       
-	  <div>
-	  	<form id="add">
-  			 Species:<br>
-  			 <input type="text" name="species"><br>
- 			 Habitat:<br>
- 			 <input type="text" name="habitat"><br>
- 			 Food:<br>
- 			 <input type="text" name="food"><br>
- 			 Name:<br>
- 			 <input type="text" name="name"><br>
- 			 Weight:<br>
- 			 <input type="text" name="weight">
-		</form>
+	  <div class="button-links" align="center">
+	   <a class="btn btn-success btn-lg" href="add.html" role="button">Add</a>
+	   <a class="btn btn-warning btn-lg" href="update.html" role="button">Update</a>
+	   <a class="btn btn-danger btn-lg" href="delete.html" role="button">Delete</a>
 	  </div>
-	  <div class="buttons">
-	   <button type="button" form="add">Add</button>
-	   <button type="button" form="delete">Delete</button>
-	   <button type="button" form="update">Update</button>
-      </div>
 	</body>
 </html>
