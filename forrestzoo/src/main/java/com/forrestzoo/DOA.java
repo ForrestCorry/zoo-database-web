@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DOA {
-
+	
+	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost:3306/?user=root$autoReconnect=true&useSSL=false";
 	static final String USER = "root";
 	static final String PASSWORD = "root";
@@ -25,10 +26,14 @@ public class DOA {
 	public static void connToDB() {
 
 		try {
+			
+			Class.forName(JDBC_DRIVER);
+			
+			
 			System.out.println("Trying to connect to the Database...");
 			CONN = DriverManager.getConnection(DB_URL, USER, PASSWORD);
 			System.out.println("Connected to the Database");
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			System.out.println("Failed to connect to the Database");
 			e.printStackTrace();
 		}
@@ -52,7 +57,7 @@ public class DOA {
 				animalsInDB.setTypeOfCage(RES_SET.getString("type_of_cage"));
 				animalsInDB.setFood(RES_SET.getString("food"));
 				animalsInDB.setName(RES_SET.getString("name"));
-				animalsInDB.setWeight(RES_SET.getDouble("weight"));
+				animalsInDB.setWeight(RES_SET.getString("weight"));
 
 				ourAnimals.add(animalsInDB);
 
@@ -68,10 +73,10 @@ public class DOA {
 		}
 	}
 	
-	public static void writeToDB(){
+	public static void writeToDB(Animals animals){
 		Animals animalToAdd = new Animals();
 		
-		animalToAdd = aboutTheAnimal();
+		animalToAdd = animals;
 		
 		connToDB();
 		
@@ -82,7 +87,9 @@ public class DOA {
 			PREP_STMT.setString(2, animalToAdd.getTypeOfCage());
 			PREP_STMT.setString(3, animalToAdd.getFood());
 			PREP_STMT.setString(4, animalToAdd.getName());
-			PREP_STMT.setDouble(5, animalToAdd.getWeight());
+			PREP_STMT.setString(5, animalToAdd.getWeight());
+			
+			System.out.println(PREP_STMT);
 			
 			PREP_STMT.executeUpdate();
 		
@@ -103,7 +110,7 @@ public class DOA {
 			PREP_STMT.setString(2, animalToUpdate.getTypeOfCage());
 			PREP_STMT.setString(3, animalToUpdate.getFood());
 			PREP_STMT.setString(4, animalToUpdate.getName());
-			PREP_STMT.setDouble(5, animalToUpdate.getWeight());
+			PREP_STMT.setString(5, animalToUpdate.getWeight());
 			PREP_STMT.setInt(6, animalToUpdate.getAnimalID());
 			//System.out.println(PREP_STMT.toString());
 			PREP_STMT.executeUpdate();
@@ -170,7 +177,7 @@ public static Animals aboutTheAnimal(){
 		animalToAdd.setName(sc.nextLine());
 		
 		System.out.println("What does your " + animalToAdd.getSpecies() + " weigh?");
-		animalToAdd.setWeight(Double.parseDouble(sc.nextLine()));
+		animalToAdd.setWeight(sc.nextLine());
 		
 		return animalToAdd;
 		
@@ -194,7 +201,7 @@ public static Animals updateAnimal(){
 	animalToUpdate.setName(sc.nextLine());
 	
 	System.out.println("What does your " + animalToUpdate.getSpecies() + " weigh?");
-	animalToUpdate.setWeight(Double.parseDouble(sc.nextLine()));
+	animalToUpdate.setWeight(sc.nextLine());
 	
 	System.out.println("What is the ID of the animal you wish to update?");
 	animalToUpdate.setAnimalID(Integer.parseInt(sc.nextLine()));

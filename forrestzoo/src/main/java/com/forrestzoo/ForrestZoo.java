@@ -24,7 +24,7 @@ public class ForrestZoo {
 				DOA.readFromDB();
 				break;
 			case "2":
-				DOA.writeToDB();
+				//DOA.writeToDB();
 				DOA.readFromDB();
 				break;
 			case "3":
